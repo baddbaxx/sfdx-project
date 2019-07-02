@@ -19,7 +19,7 @@ node {
     print JWT_KEY_CRED_ID
     print CONNECTED_APP_CONSUMER_KEY
     
-    print ${toolbelt}
+    
 
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
