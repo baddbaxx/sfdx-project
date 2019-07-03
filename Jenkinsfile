@@ -35,6 +35,8 @@ node {
             // need to pull out assigned username
             rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:org:create --definitionfile config/project-scratch-def.json --json --setdefaultusername"
             printf rmsg
+            mdpSo = sh returnStatus: true, script: "${toolbelt}/sfdx force:user:password:generate -u TempUnmanaged"
+            print mdpSo
             def jsonSlurper = new JsonSlurperClassic()
             def robj = jsonSlurper.parseText(rmsg)
             if (robj.status != 0) { error 'org creation failed: ' + robj.message }
