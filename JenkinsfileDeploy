@@ -51,7 +51,7 @@ node {
         }
        
         stage('Push To Org') {
-            rc = sh returnStatus: true, script: "${toolbelt}sfdx force:mdapi:deploy --targetusername badbaxxjenkins@test.com --deploydir Package"
+            rc = sh returnStatus: true, script: "${toolbelt}sfdx force:mdapi:deploy --targetusername badbaxxjenkins@test.com --deploydir /var/lib/jenkins/workspace/TryDeployDatahub/force-app"
             if (rc != 0) {
                 error 'push failed'
             }
