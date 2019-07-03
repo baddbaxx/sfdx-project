@@ -47,15 +47,15 @@ node {
 ///var/lib/jenkins/workspace/TryDeployDatahub/force-app
         // sfdx force:package:create -n GIFter -d "Using GIPHY to find GIFs and post to Chatter" -r force-app -t Unlocked -v DevHub
         stage('Create Package') {
-        rc = sh returnStatus: true, script: "${toolbelt}sfdx force:package:create -n Package  -r force-app -t Unlocked -v DevHub"
-             sleep(60)
+        rc = sh returnStatus: true, script: "${toolbelt}sfdx force:package:create -n Package  -r force-app -t Unlocked"
+             sleep(120)
         }
         
         
         
         stage('Convert Metadata') {
         rc = sh returnStatus: true, script: "${toolbelt}sfdx force:source:convert -r force-app -d force-app -n 'Package'"
-             sleep(60)
+             sleep(120)
         }
        
         stage('Push To Org') {
@@ -63,7 +63,7 @@ node {
             if (rc != 0) {
                 error 'push failed'
             }
-            sleep(60)
+            sleep(120)
             
             // assign permset
             rc = sh returnStatus: true, script: "${toolbelt}sfdx force:user:permset:assign --targetusername badbaxxjenkins@test.com --permsetname DreamHouse"
