@@ -44,9 +44,9 @@ node {
           //  robj = null
 
         }
-
+///var/lib/jenkins/workspace/TryDeployDatahub/force-app
         stage('Push To Org') {
-            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:mdapi:deploy -d /var/lib/jenkins/workspace/TryDeployDatahub/force-app"
+            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:mdapi:deploy -d badbaxxjenkins@test.com "
             if (rc != 0) {
                 error 'push failed'
             }
