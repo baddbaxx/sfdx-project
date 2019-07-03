@@ -45,8 +45,13 @@ node {
 
         }
 ///var/lib/jenkins/workspace/TryDeployDatahub/force-app
+        stage('Convert Metadata') {
+        rc = sh returnStatus: true, script: "${toolbelt}sfdx force:source:convert -r force-app -d force-app -n 'Package'"
+             sleep(60)
+        }
+       
         stage('Push To Org') {
-            rc = sh returnStatus: true, script: "${toolbelt}sfdx force:mdapi:deploy --targetusername badbaxxjenkins@test.com --deploydir force-app"
+            rc = sh returnStatus: true, script: "${toolbelt}sfdx force:mdapi:deploy --targetusername badbaxxjenkins@test.com --deploydir Package"
             if (rc != 0) {
                 error 'push failed'
             }
