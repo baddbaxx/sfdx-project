@@ -50,7 +50,7 @@ node {
             if (rc != 0) {
                 error 'push failed'
             }
-            sleep(30)
+            sleep(300)
             
             // assign permset
             rc = sh returnStatus: true, script: "${toolbelt}sfdx force:user:permset:assign --targetusername badbaxxjenkins@test.com --permsetname DreamHouse"
