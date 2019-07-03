@@ -46,7 +46,7 @@ node {
         }
 
         stage('Push To Org') {
-            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:mdapi:deploy -d "
+            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:mdapi:deploy"
             if (rc != 0) {
                 error 'push failed'
             }
